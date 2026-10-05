@@ -8,6 +8,11 @@ Branded, trilingual (Arabic / English / Indonesian, RTL + LTR) site with day/nig
 - Sign-language interpreter panel (captions, word highlighting, fingerspelling, speed, large text) available from every page and from every text card.
 - All data lives in `src/data/fixtures.ts`.
 
+## ✅ Milestone 1.5 — Accounts, Mushaf & review routing (done)
+- Netlify Identity sign-in / sign-up / guest / admin; admin-only Review console and Admin dashboard.
+- Full Mushaf reader with a daily reading streak; unanswered questions stored in Netlify Database and emailed via Netlify Forms.
+- Responsive header/menu bar and mobile layout; more topics (parents, kinship, patience, du‘a, neighbours, truthfulness, repentance, dhikr, orphans).
+
 ## Milestone 2 — Knowledge data model
 - Netlify Database (Postgres + Drizzle) schema: `sources`, `editions`, `items`, `translations`, `narrators`, `concepts`, `item_concepts`, `relations`, `verification_events`.
 - Seed script that imports the current fixtures, then bulk import of full collections (Qur’an, the Six Books, Muwatta’, Musnad Ahmad, Riyad al-Salihin, tafsir works).

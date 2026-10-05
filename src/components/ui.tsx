@@ -10,7 +10,7 @@ export function Logo({ size = 40 }: { size?: number }) {
   const { t } = usePrefs()
   return (
     <Link to="/" className="flex items-center gap-3 shrink-0" aria-label={t.brand}>
-      <img src={cdn('/img/midad-mark.png', size * 2)} alt="" width={size} height={size * 1.18} className="lk app" style={{ width: size, height: 'auto' }} />
+      <img src={cdn('/img/midad-mark.png', size * 2)} alt="" width={size} height={Math.round(size * 1.2)} className="lk app" style={{ width: size, height: 'auto' }} />
       <span className="leading-tight">
         <span className="block text-lg font-bold text-pr">{t.brand}</span>
         <span className="hidden sm:block text-[11px] text-mu max-w-[220px] truncate">{t.tagline}</span>

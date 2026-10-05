@@ -24,7 +24,7 @@
   --ai: #5a6f8f;
   --c: var(--pr);
 
-  --logo-bg: #ffffff;
+  --logo-bg: transparent;
   --logo-pad: 6px;
 
   --patg: repeating-conic-gradient(from 45deg, var(--pr) 0 25%, transparent 0 50%) 0 0 / 22px 22px;
@@ -52,7 +52,7 @@
   --warn: #e0ab5c;
   --ai: #9fb3d4;
 
-  --logo-bg: #f7f1e4;
+  --logo-bg: transparent;
   --logo-pad: 6px;
   --pato: 0.08;
   --patot: 0.25;
@@ -104,6 +104,8 @@ pre {
   color: var(--tx);
 }
 
+/* Component classes live in a layer so Tailwind utilities (hidden, md:flex, p-*) can override them. */
+@layer components {
 /* ---------- Type scale ---------- */
 .t1 {
   font: 700 clamp(34px, 5vw, 56px) / 1.15 var(--font);
@@ -363,13 +365,91 @@ html.a11y-large .quote {
     grid-template-columns: 1fr;
   }
   .hero {
-    padding: 24px;
+    padding: 20px;
+    border-radius: 14px;
   }
+  .band {
+    padding: 16px;
+  }
+  .steps {
+    gap: 8px;
+    font-size: 13px;
+  }
+  .steps span {
+    padding: 4px 10px;
+  }
+  .quote {
+    font-size: 21px;
+  }
+  .btn {
+    padding: 9px 16px;
+  }
+  .tbr {
+    flex-wrap: wrap;
+  }
+}
+
+/* Mushaf reader */
+.mushaf {
+  font-family: "Amiri Quran", var(--font-quote);
+  font-size: 28px;
+  line-height: 2.3;
+  direction: rtl;
+  text-align: justify;
+  text-align-last: center;
+}
+.mushaf .an {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.6em;
+  height: 1.6em;
+  margin: 0 0.15em;
+  padding: 0 0.2em;
+  border: 1px solid var(--ac);
+  border-radius: 999px;
+  color: var(--ac);
+  font: 600 0.5em/1 var(--font);
+  vertical-align: middle;
+}
+html.a11y-large .mushaf {
+  font-size: 34px;
+}
+@media (max-width: 640px) {
+  .mushaf {
+    font-size: 23px;
+    line-height: 2.2;
+  }
+}
+
+/* Sign panel: animated hand handshape per letter */
+@keyframes signPop {
+  0% {
+    transform: scale(0.6) rotate(-10deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08) rotate(3deg);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+  }
+}
+.sign-pop {
+  animation: signPop 0.35s ease both;
 }
 
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
     animation: none !important;
+  }
+}
+}
+
+/* Grid children default to min-width:auto, which lets long Arabic lines and chip rows push past narrow screens. */
+@layer base {
+  .grid > * {
+    min-width: 0;
   }
 }

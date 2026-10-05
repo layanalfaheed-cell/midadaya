@@ -3,6 +3,7 @@ import { useMemo, useState, useEffect } from 'react'
 import { Search, SlidersHorizontal, Sparkles } from 'lucide-react'
 import { usePrefs } from '@/lib/prefs'
 import { ItemCard, PageHeader } from '@/components/ui'
+import { EscalateCard } from '@/components/Escalate'
 import { exampleQueries, searchItems, sourceById, type ItemType, type Status } from '@/data/fixtures'
 
 export const Route = createFileRoute('/explore')({
@@ -57,7 +58,7 @@ function Explore() {
       </PageHeader>
 
       <div className="grid gap-8 lg:grid-cols-[260px_1fr]">
-        <aside className="space-y-6 lg:sticky lg:top-24 self-start">
+        <aside className="space-y-6 lg:sticky lg:top-36 self-start">
           <p className="tk h"><SlidersHorizontal size={14} /> {t.explore.filters}</p>
           <Group label={t.explore.byType}>
             <button className={chip(!type)} onClick={() => setType(null)}>{t.ui.all}</button>
@@ -91,6 +92,7 @@ function Explore() {
               {hasFilters && (
                 <button className="btn btn-gh" onClick={() => { setType(null); setStatus(null); setSource(null) }}>{t.ui.clear}</button>
               )}
+              {q && !hasFilters && <div className="mx-auto mt-4 max-w-xl"><EscalateCard question={q} /></div>}
             </div>
           ) : (
             <div className="grid gap-5 xl:grid-cols-2">
@@ -109,7 +111,7 @@ function Group({ label, children }: { label: string; children: React.ReactNode }
   return (
     <div>
       <p className="mb-2 text-xs font-semibold text-mu">{label}</p>
-      <div className="flex flex-wrap gap-2">{children}</div>
+      <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-wrap lg:overflow-visible">{children}</div>
     </div>
   )
 }

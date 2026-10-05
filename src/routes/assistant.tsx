@@ -3,19 +3,20 @@ import { useEffect, useRef, useState } from 'react'
 import { BookOpen, Bot, Send, Sparkles, User } from 'lucide-react'
 import { usePrefs } from '@/lib/prefs'
 import { StatusBadge } from '@/components/ui'
+import { EscalateCard } from '@/components/Escalate'
 import { searchItems, sourceById, type Item } from '@/data/fixtures'
 
 export const Route = createFileRoute('/assistant')({ component: Assistant })
 
-type Msg = { role: 'user' | 'assistant'; text: string; cites?: Item[]; fallback?: boolean }
+type Msg = { role: 'user' | 'assistant'; text: string; cites?: Item[]; fallback?: boolean; question?: string }
 
 // Retrieval-only stub: answers are assembled from approved fixture texts.
 // A later milestone replaces this with an LLM (via Netlify AI Gateway) grounded on the same retrieval.
+// With no verified match we show nothing unrelated and offer to send the question to the review team.
 function answer(q: string): { cites: Item[]; fallback: boolean } {
-  const hits = searchItems(q)
-  const verified = hits.filter((h) => h.item.status === 'verified')
+  const verified = searchItems(q).filter((h) => h.item.status === 'verified')
   if (verified.length) return { cites: verified.slice(0, 3).map((h) => h.item), fallback: false }
-  return { cites: (hits.length ? hits : searchItems('علم')).slice(0, 2).map((h) => h.item), fallback: true }
+  return { cites: [], fallback: true }
 }
 
 function Assistant() {
@@ -37,14 +38,14 @@ function Assistant() {
     setBusy(true)
     setTimeout(() => {
       const { cites, fallback } = answer(v)
-      setMsgs((m) => [...m, { role: 'assistant', text: fallback ? t.assistant.fallback : t.assistant.intro, cites, fallback }])
+      setMsgs((m) => [...m, { role: 'assistant', text: fallback ? t.assistant.fallback : t.assistant.intro, cites, fallback, question: v }])
       setBusy(false)
     }, 1100)
   }
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
-      <section className="card flex h-[calc(100vh-140px)] min-h-[560px] flex-col overflow-hidden">
+      <section className="card flex h-[calc(100dvh-150px)] min-h-[480px] flex-col overflow-hidden">
         <header className="flex items-center gap-3 border-b border-bd px-5 py-4 pat">
           <span className="grid h-11 w-11 place-items-center rounded-xl bg-pr text-sf">
             <Bot size={22} />
@@ -55,7 +56,7 @@ function Assistant() {
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-5 space-y-5">
+        <div className="flex-1 overflow-y-auto p-3 sm:p-5 space-y-5">
           <Bubble role="assistant" text={t.assistant.hello} />
           {msgs.length === 0 && (
             <div className="grid gap-2 sm:grid-cols-2 pt-2">
@@ -78,10 +79,10 @@ function Assistant() {
             e.preventDefault()
             ask(input)
           }}
-          className="border-t border-bd p-4"
+          className="border-t border-bd p-3 sm:p-4"
         >
           <div className="flex gap-2">
-            <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={t.assistant.placeholder} className="field" />
+            <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={t.assistant.placeholder} className="field min-w-0" />
             <button className="btn btn-pr !px-5" disabled={busy} aria-label={t.ui.send}>
               <Send size={16} className="rtl:-scale-x-100" />
             </button>
@@ -115,7 +116,7 @@ function Assistant() {
   )
 }
 
-function Bubble({ role, text, cites }: Msg) {
+function Bubble({ role, text, cites, fallback, question }: Msg) {
   const { t, lang } = usePrefs()
   const mine = role === 'user'
   return (
@@ -123,7 +124,7 @@ function Bubble({ role, text, cites }: Msg) {
       <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full ${mine ? 'bg-ac text-sf' : 'bg-prs text-pr'}`}>
         {mine ? <User size={16} /> : <Bot size={16} />}
       </span>
-      <div className={`max-w-[88%] space-y-3 ${mine ? 'text-end' : ''}`}>
+      <div className={`min-w-0 max-w-[88%] space-y-3 ${mine ? 'text-end' : ''}`}>
         <p className={`m-0 inline-block rounded-2xl px-4 py-3 text-[15px] leading-7 ${mine ? 'bg-pr text-sf' : 'bg-bg2 text-tx'}`}>{text}</p>
         {cites?.map((c, i) => {
           const src = sourceById(c.source)
@@ -139,6 +140,7 @@ function Bubble({ role, text, cites }: Msg) {
             </div>
           )
         })}
+        {fallback && question && <EscalateCard question={question} />}
       </div>
     </div>
   )

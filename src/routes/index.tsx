@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
-import { ArrowLeft, ArrowRight, Bot, Code2, Database, Hand, Network, Search, ShieldCheck, Sparkles, Users, Workflow, Globe } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Bot, Code2, Database, Hand, Network, Search, ShieldCheck, Sparkles, Users, Workflow, Globe, BookOpen } from 'lucide-react'
 import { usePrefs } from '@/lib/prefs'
 import { cdn, ItemCard, StatusBadge } from '@/components/ui'
 import { exampleQueries, items, stats } from '@/data/fixtures'
@@ -19,10 +19,10 @@ function Home() {
   const featured = ['h-001', 'q-004', 'h-015'].map((id) => items.find((i) => i.id === id)!)
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-14 sm:space-y-20">
       {/* Hero */}
-      <section className="hero pat grid items-center gap-10 lg:grid-cols-[1.25fr_1fr] fade-up">
-        <div>
+      <section className="hero pat grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.25fr_1fr] fade-up">
+        <div className="min-w-0">
           <p className="pr0 tk h">
             <span className="h-2 w-2 rounded-full bg-pr" /> {t.home.eyebrow}
           </p>
@@ -55,6 +55,9 @@ function Home() {
             <Link to="/assistant" className="btn btn-gh">
               <Bot size={16} /> {t.home.ctaAsk}
             </Link>
+            <Link to="/quran" className="btn btn-gh">
+              <BookOpen size={16} /> {t.nav.quran}
+            </Link>
           </div>
           <div className="steps">
             {t.home.steps.map((s) => (
@@ -65,8 +68,8 @@ function Home() {
 
         <div className="relative mx-auto w-full max-w-sm">
           <div className="pat tl rad absolute -inset-8" aria-hidden />
-          <img src={cdn('/img/midad-logo.jpeg', 720)} alt="MIDAD — مِداد" className="lk relative w-full rounded-3xl border border-bd shadow-xl" width={360} height={356} />
-          <div className="card absolute -bottom-6 start-[-12px] sm:start-[-32px] w-64 p-4 shadow-xl">
+          <img src={cdn('/img/midad-logo.png', 720)} alt="MIDAD — مِداد" className="relative mx-auto w-3/4 sm:w-full drop-shadow-xl" width={360} height={356} />
+          <div className="card relative mx-auto mt-4 w-full max-w-xs p-4 shadow-xl sm:absolute sm:-bottom-6 sm:start-[-32px] sm:mt-0 sm:w-64">
             <p className="quote m-0 !text-lg !leading-8">«إنما الأعمالُ بالنيات»</p>
             <p className="m-0 mt-1 text-xs text-mu">{t.ui.source}: {lang === 'ar' ? 'صحيح البخاري ١' : 'Sahih al-Bukhari 1'}</p>
             <div className="mt-2">

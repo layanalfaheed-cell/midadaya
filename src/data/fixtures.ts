@@ -83,8 +83,17 @@ export const concepts: Concept[] = [
   { id: 'yusr', label: n('التيسير', 'Ease', 'Kemudahan'), synonyms: ['يسر', 'يسروا', 'تيسير', 'عسر', 'ease', 'easy', 'hardship', 'mudah', 'kemudahan'], related: ['rahmah', 'dawah'] },
   { id: 'ukhuwwah', label: n('الأخوة', 'Brotherhood', 'Persaudaraan'), synonyms: ['اخ', 'اخيه', 'اخوه', 'بنيان', 'brother', 'brotherhood', 'unity', 'saudara', 'persaudaraan'], related: ['iman', 'sadaqah', 'taqwa'] },
   { id: 'dawah', label: n('الدعوة والتبليغ', 'Da‘wah', 'Dakwah'), synonyms: ['دعوه', 'ادع', 'بلغوا', 'حكمه', 'موعظه', 'invite', 'convey', 'wisdom', 'preach', 'dakwah', 'hikmah', 'sampaikan'], related: ['ilm', 'yusr', 'rahmah'] },
-  { id: 'taqwa', label: n('التقوى', 'God-consciousness', 'Takwa'), synonyms: ['تقوى', 'اتق', 'بر', 'taqwa', 'piety', 'righteousness', 'takwa', 'kebajikan'], related: ['akhlaq', 'ghadab', 'ukhuwwah'] },
+  { id: 'taqwa', label: n('التقوى', 'God-consciousness', 'Takwa'), synonyms: ['تقوى', 'اتق', 'taqwa', 'piety', 'righteousness', 'takwa', 'kebajikan'], related: ['akhlaq', 'ghadab', 'ukhuwwah'] },
   { id: 'nasiha', label: n('النصيحة', 'Sincere advice', 'Nasihat'), synonyms: ['نصيحه', 'نصح', 'advice', 'sincere', 'counsel', 'nasihat'], related: ['dawah', 'ukhuwwah'] },
+  { id: 'birr', label: n('بر الوالدين', 'Honouring parents', 'Berbakti kepada orang tua'), synonyms: ['والدين', 'الوالدين', 'والد', 'والده', 'امك', 'ابوك', 'امي', 'ابي', 'ام', 'اب', 'parents', 'parent', 'mother', 'father', 'orang tua', 'ibu', 'ayah', 'birrul walidain', 'berbakti'], related: ['rahim', 'rahmah'] },
+  { id: 'rahim', label: n('صلة الرحم', 'Ties of kinship', 'Silaturahmi'), synonyms: ['رحم', 'ارحام', 'الارحام', 'صله', 'قاطع', 'قطيعه', 'اقارب', 'قرابه', 'kinship', 'relatives', 'family ties', 'kin', 'relations', 'silaturahmi', 'silaturahim', 'kerabat', 'keluarga'], related: ['birr', 'jar'] },
+  { id: 'sabr', label: n('الصبر', 'Patience', 'Kesabaran'), synonyms: ['صبر', 'صابرين', 'صبور', 'ابتلاء', 'بلاء', 'مصيبه', 'patience', 'patient', 'perseverance', 'trial', 'sabar', 'kesabaran', 'musibah', 'cobaan'], related: ['ghadab', 'dua'] },
+  { id: 'dua', label: n('الدعاء', 'Supplication', 'Doa'), synonyms: ['دعاء', 'ادعوني', 'استجب', 'اجيب', 'supplication', 'dua', 'du‘a', 'doa', 'berdoa'], related: ['dhikr', 'tawbah'] },
+  { id: 'jar', label: n('حق الجار', 'Rights of the neighbour', 'Hak tetangga'), synonyms: ['جار', 'جيران', 'neighbour', 'neighbor', 'neighbours', 'neighbors', 'tetangga'], related: ['rahim', 'akhlaq'] },
+  { id: 'sidq', label: n('الصدق', 'Truthfulness', 'Kejujuran'), synonyms: ['صدق', 'صادق', 'صادقين', 'honesty', 'truthfulness', 'truthful', 'honest', 'jujur', 'kejujuran'], related: ['lisan', 'akhlaq'] },
+  { id: 'tawbah', label: n('التوبة والاستغفار', 'Repentance & forgiveness', 'Taubat & istighfar'), synonyms: ['توبه', 'تاب', 'تائب', 'توابين', 'استغفار', 'مغفره', 'يغفر', 'ذنوب', 'ذنب', 'repentance', 'repent', 'forgiveness', 'sin', 'sins', 'taubat', 'tobat', 'ampunan', 'dosa', 'istighfar'], related: ['dua', 'rahmah'] },
+  { id: 'dhikr', label: n('ذكر الله', 'Remembrance of Allah', 'Dzikir'), synonyms: ['ذكر', 'اذكار', 'تسبيح', 'سبحان', 'remembrance', 'dhikr', 'zikr', 'tasbih', 'zikir', 'dzikir'], related: ['dua', 'quran'] },
+  { id: 'yatim', label: n('كفالة اليتيم', 'Caring for orphans', 'Menyantuni anak yatim'), synonyms: ['يتيم', 'ايتام', 'كافل', 'كفاله', 'orphan', 'orphans', 'yatim', 'anak yatim'], related: ['rahmah', 'sadaqah'] },
 ]
 
 const abuHurayrah = n('أبو هريرة رضي الله عنه', 'Abu Hurayrah (ra)', 'Abu Hurairah ra')
@@ -140,7 +149,7 @@ export const items: Item[] = [
   { id: 'q-011', type: 'ayah', ar: '﴿وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ﴾', tr: { en: '“And indeed, you are of a great moral character.”', id: '“Dan sesungguhnya engkau benar-benar berbudi pekerti yang agung.”' }, source: 'quran', ref: 'القلم ٦٨:٤', status: 'verified', concepts: ['akhlaq'] },
   { id: 'q-012', type: 'ayah', ar: '﴿إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ﴾', tr: { en: '“The believers are but brothers.”', id: '“Sesungguhnya orang-orang mukmin itu bersaudara.”' }, source: 'quran', ref: 'الحجرات ٤٩:١٠', status: 'verified', concepts: ['ukhuwwah', 'iman'] },
   { id: 'q-013', type: 'ayah', ar: '﴿وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ﴾', tr: { en: '“And We have not sent you except as a mercy to the worlds.”', id: '“Dan Kami tidak mengutus engkau melainkan sebagai rahmat bagi seluruh alam.”' }, source: 'quran', ref: 'الأنبياء ٢١:١٠٧', status: 'verified', concepts: ['rahmah'] },
-  { id: 'q-014', type: 'ayah', ar: '﴿إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ وَيُحِبُّ الْمُتَطَهِّرِينَ﴾', tr: { en: '“Indeed, Allah loves those who repent and loves those who purify themselves.”', id: '“Sungguh, Allah menyukai orang yang bertobat dan menyukai orang yang menyucikan diri.”' }, source: 'quran', ref: 'البقرة ٢:٢٢٢', status: 'verified', concepts: ['tahara'] },
+  { id: 'q-014', type: 'ayah', ar: '﴿إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ وَيُحِبُّ الْمُتَطَهِّرِينَ﴾', tr: { en: '“Indeed, Allah loves those who repent and loves those who purify themselves.”', id: '“Sungguh, Allah menyukai orang yang bertobat dan menyukai orang yang menyucikan diri.”' }, source: 'quran', ref: 'البقرة ٢:٢٢٢', status: 'verified', concepts: ['tawbah', 'tahara'] },
   { id: 'q-015', type: 'ayah', ar: '﴿وَلَا تَقْفُ مَا لَيْسَ لَكَ بِهِ عِلْمٌ﴾', tr: { en: '“And do not pursue that of which you have no knowledge.”', id: '“Dan janganlah kamu mengikuti sesuatu yang tidak kamu ketahui.”' }, source: 'quran', ref: 'الإسراء ١٧:٣٦', status: 'verified', concepts: ['tathabbut', 'ilm'] },
   { id: 'q-016', type: 'ayah', ar: '﴿إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ﴾', tr: { en: '“Only those among His servants who have knowledge truly fear Allah.”', id: '“Sesungguhnya yang takut kepada Allah di antara hamba-hamba-Nya hanyalah para ulama.”' }, source: 'quran', ref: 'فاطر ٣٥:٢٨', status: 'verified', concepts: ['ilm', 'taqwa'] },
 
@@ -148,6 +157,26 @@ export const items: Item[] = [
   { id: 'a-001', type: 'athar', ar: 'قال محمد بن سيرين: «إن هذا العلمَ دين، فانظروا عمّن تأخذون دينَكم»', tr: { en: 'Muhammad ibn Sirin said: “This knowledge is religion, so look carefully at whom you take your religion from.”', id: 'Muhammad bin Sirin berkata: “Ilmu ini adalah agama, maka perhatikanlah dari siapa kalian mengambil agama kalian.”' }, source: 'muslim', ref: 'المقدمة', narrator: n('محمد بن سيرين', 'Muhammad ibn Sirin', 'Muhammad bin Sirin'), status: 'verified', concepts: ['tathabbut', 'ilm'] },
   { id: 'a-002', type: 'athar', ar: 'قال عبد الله بن المبارك: «الإسنادُ من الدين، ولولا الإسنادُ لقال من شاء ما شاء»', tr: { en: '‘Abdullah ibn al-Mubarak said: “The isnad is part of the religion; were it not for the isnad, anyone could say whatever they wished.”', id: 'Abdullah bin al-Mubarak berkata: “Sanad adalah bagian dari agama; seandainya tidak ada sanad, siapa pun akan berkata sesukanya.”' }, source: 'muslim', ref: 'المقدمة', narrator: n('عبد الله بن المبارك', '‘Abdullah ibn al-Mubarak', 'Abdullah bin al-Mubarak'), status: 'verified', concepts: ['tathabbut'] },
   { id: 'a-003', type: 'athar', ar: 'قال الإمام مالك: «كلٌّ يؤخذُ من قوله ويُردّ إلا صاحبَ هذا القبر ﷺ»', tr: { en: 'Imam Malik said: “Everyone’s words may be accepted or rejected, except the occupant of this grave ﷺ.”', id: 'Imam Malik berkata: “Setiap perkataan bisa diambil dan ditolak, kecuali (perkataan) penghuni kubur ini ﷺ.”' }, source: 'malik', ref: '—', narrator: n('مالك بن أنس', 'Malik ibn Anas', 'Malik bin Anas'), status: 'ai_extracted', concepts: ['tathabbut', 'ilm'] },
+
+  // Family, character and worship topics
+  { id: 'q-017', type: 'ayah', ar: '﴿وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ وَبِالْوَالِدَيْنِ إِحْسَانًا﴾', tr: { en: '“Your Lord has decreed that you worship none but Him, and that you be good to your parents.”', id: '“Dan Tuhanmu telah memerintahkan agar kamu jangan menyembah selain Dia dan hendaklah berbuat baik kepada ibu bapak.”' }, source: 'quran', ref: 'الإسراء ١٧:٢٣', status: 'verified', concepts: ['birr'] },
+  { id: 'q-018', type: 'ayah', ar: '﴿وَاخْفِضْ لَهُمَا جَنَاحَ الذُّلِّ مِنَ الرَّحْمَةِ وَقُل رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا﴾', tr: { en: '“And lower to them the wing of humility out of mercy, and say: My Lord, have mercy on them as they raised me when I was small.”', id: '“Dan rendahkanlah dirimu terhadap keduanya dengan penuh kasih sayang, dan ucapkanlah: Wahai Tuhanku, sayangilah keduanya sebagaimana mereka mendidikku pada waktu kecil.”' }, source: 'quran', ref: 'الإسراء ١٧:٢٤', status: 'verified', concepts: ['birr', 'dua'] },
+  { id: 'h-031', type: 'hadith', ar: 'جاء رجلٌ إلى رسول الله ﷺ فقال: يا رسول الله، من أحقُّ الناسِ بحُسنِ صحابتي؟ قال: «أمُّك» قال: ثم من؟ قال: «ثم أمُّك» قال: ثم من؟ قال: «ثم أمُّك» قال: ثم من؟ قال: «ثم أبوك»', tr: { en: 'A man came to the Messenger of Allah ﷺ and said: “Who among people is most deserving of my good companionship?” He said: “Your mother.” He asked: “Then who?” He said: “Then your mother.” He asked: “Then who?” He said: “Then your mother.” He asked: “Then who?” He said: “Then your father.”', id: 'Seorang laki-laki datang kepada Rasulullah ﷺ dan bertanya: “Siapakah yang paling berhak aku pergauli dengan baik?” Beliau menjawab: “Ibumu.” Ia bertanya: “Kemudian siapa?” Beliau menjawab: “Kemudian ibumu.” Ia bertanya: “Kemudian siapa?” Beliau menjawab: “Kemudian ibumu.” Ia bertanya: “Kemudian siapa?” Beliau menjawab: “Kemudian ayahmu.”' }, source: 'bukhari', ref: '5971', alsoIn: 'مسلم ٢٥٤٨', narrator: abuHurayrah, grade: sahih, status: 'verified', concepts: ['birr'] },
+  { id: 'h-032', type: 'hadith', ar: '«رضا الربِّ في رضا الوالد، وسخطُ الربِّ في سخطِ الوالد»', tr: { en: '“The Lord’s pleasure lies in the parent’s pleasure, and the Lord’s displeasure lies in the parent’s displeasure.”', id: '“Ridha Rabb terletak pada ridha orang tua, dan murka Rabb terletak pada murka orang tua.”' }, source: 'tirmidhi', ref: '1899', narrator: ibnAmr, grade: hasan, status: 'verified', concepts: ['birr'] },
+  { id: 'h-033', type: 'hadith', ar: '«من أحبَّ أن يُبسَطَ له في رزقه، ويُنسَأَ له في أثره، فليصلْ رحمَه»', tr: { en: '“Whoever would like his provision to be expanded and his life to be prolonged, let him maintain the ties of kinship.”', id: '“Barang siapa ingin dilapangkan rezekinya dan dipanjangkan umurnya, hendaklah ia menyambung tali silaturahmi.”' }, source: 'bukhari', ref: '5986', alsoIn: 'مسلم ٢٥٥٧', narrator: anas, grade: sahih, status: 'verified', concepts: ['rahim'] },
+  { id: 'h-034', type: 'hadith', ar: '«لا يدخلُ الجنةَ قاطع»', tr: { en: '“The one who severs (the ties of kinship) will not enter Paradise.”', id: '“Tidak akan masuk surga orang yang memutus (tali silaturahmi).”' }, source: 'bukhari', ref: '5984', alsoIn: 'مسلم ٢٥٥٦', narrator: n('جبير بن مطعم رضي الله عنه', 'Jubayr ibn Mut‘im (ra)', 'Jubair bin Muth‘im ra'), grade: sahih, status: 'verified', concepts: ['rahim'] },
+  { id: 'h-035', type: 'hadith', ar: '«ليس الواصلُ بالمكافئ، ولكنِ الواصلُ الذي إذا قُطعتْ رحمُه وصلَها»', tr: { en: '“The one who maintains ties is not the one who merely reciprocates; rather, it is the one who, when his kin cut him off, keeps the ties.”', id: '“Penyambung silaturahmi bukanlah orang yang sekadar membalas, tetapi orang yang ketika kerabatnya memutus hubungan, ia menyambungnya.”' }, source: 'bukhari', ref: '5991', narrator: ibnAmr, grade: sahih, status: 'verified', concepts: ['rahim'] },
+  { id: 'q-019', type: 'ayah', ar: '﴿وَاتَّقُوا اللَّهَ الَّذِي تَسَاءَلُونَ بِهِ وَالْأَرْحَامَ ۚ إِنَّ اللَّهَ كَانَ عَلَيْكُمْ رَقِيبًا﴾', tr: { en: '“And fear Allah, through whom you ask one another, and (respect) the ties of kinship. Indeed, Allah is ever watchful over you.”', id: '“Dan bertakwalah kepada Allah yang dengan nama-Nya kamu saling meminta, dan (peliharalah) hubungan kekeluargaan. Sesungguhnya Allah selalu menjaga dan mengawasimu.”' }, source: 'quran', ref: 'النساء ٤:١', status: 'verified', concepts: ['rahim', 'taqwa'] },
+  { id: 'q-020', type: 'ayah', ar: '﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ﴾', tr: { en: '“O you who believe, seek help through patience and prayer. Indeed, Allah is with the patient.”', id: '“Wahai orang-orang yang beriman, mohonlah pertolongan dengan sabar dan shalat. Sesungguhnya Allah beserta orang-orang yang sabar.”' }, source: 'quran', ref: 'البقرة ٢:١٥٣', status: 'verified', concepts: ['sabr', 'arkan'] },
+  { id: 'h-036', type: 'hadith', ar: '«وما أُعطيَ أحدٌ عطاءً خيرًا وأوسعَ من الصبر»', tr: { en: '“No one has been given a gift better and more expansive than patience.”', id: '“Tidaklah seseorang diberi pemberian yang lebih baik dan lebih luas daripada kesabaran.”' }, source: 'bukhari', ref: '1469', alsoIn: 'مسلم ١٠٥٣', narrator: n('أبو سعيد الخدري رضي الله عنه', 'Abu Sa‘id al-Khudri (ra)', 'Abu Sa‘id al-Khudri ra'), grade: sahih, status: 'verified', concepts: ['sabr'] },
+  { id: 'q-021', type: 'ayah', ar: '﴿وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ﴾', tr: { en: '“And when My servants ask you about Me — indeed I am near. I respond to the call of the caller when he calls upon Me.”', id: '“Dan apabila hamba-hamba-Ku bertanya kepadamu tentang Aku, maka sesungguhnya Aku dekat. Aku mengabulkan permohonan orang yang berdoa apabila ia berdoa kepada-Ku.”' }, source: 'quran', ref: 'البقرة ٢:١٨٦', status: 'verified', concepts: ['dua'] },
+  { id: 'h-037', type: 'hadith', ar: '«الدعاءُ هو العبادة»', tr: { en: '“Supplication is worship.”', id: '“Doa adalah ibadah.”' }, source: 'tirmidhi', ref: '2969', alsoIn: 'أبو داود ١٤٧٩', narrator: n('النعمان بن بشير رضي الله عنهما', 'al-Nu‘man ibn Bashir (ra)', 'An-Nu‘man bin Basyir ra'), grade: hasanSahih, status: 'verified', concepts: ['dua'] },
+  { id: 'h-038', type: 'hadith', ar: '«ما زال جبريلُ يوصيني بالجار حتى ظننتُ أنه سيُورِّثُه»', tr: { en: '“Jibril kept advising me about the neighbour until I thought he would make him an heir.”', id: '“Jibril terus-menerus berwasiat kepadaku tentang tetangga hingga aku mengira ia akan menjadikannya ahli waris.”' }, source: 'bukhari', ref: '6014', alsoIn: 'مسلم ٢٦٢٤', narrator: n('عائشة رضي الله عنها', '‘A’ishah (ra)', 'Aisyah ra'), grade: sahih, status: 'verified', concepts: ['jar'] },
+  { id: 'h-039', type: 'hadith', ar: '«عليكم بالصدق، فإن الصدقَ يهدي إلى البر، وإن البرَّ يهدي إلى الجنة»', tr: { en: '“Hold to truthfulness, for truthfulness leads to righteousness, and righteousness leads to Paradise.”', id: '“Hendaklah kalian berlaku jujur, karena kejujuran menuntun kepada kebaikan, dan kebaikan menuntun ke surga.”' }, source: 'muslim', ref: '2607', narrator: n('عبد الله بن مسعود رضي الله عنه', '‘Abdullah ibn Mas‘ud (ra)', 'Abdullah bin Mas‘ud ra'), grade: sahih, status: 'verified', concepts: ['sidq', 'lisan'] },
+  { id: 'q-022', type: 'ayah', ar: '﴿قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا﴾', tr: { en: '“Say: O My servants who have transgressed against themselves, do not despair of the mercy of Allah. Indeed, Allah forgives all sins.”', id: '“Katakanlah: Wahai hamba-hamba-Ku yang melampaui batas terhadap diri mereka sendiri, janganlah kamu berputus asa dari rahmat Allah. Sesungguhnya Allah mengampuni dosa-dosa semuanya.”' }, source: 'quran', ref: 'الزمر ٣٩:٥٣', status: 'verified', concepts: ['tawbah', 'rahmah'] },
+  { id: 'q-023', type: 'ayah', ar: '﴿أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾', tr: { en: '“Unquestionably, by the remembrance of Allah hearts are assured.”', id: '“Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram.”' }, source: 'quran', ref: 'الرعد ١٣:٢٨', status: 'verified', concepts: ['dhikr'] },
+  { id: 'h-040', type: 'hadith', ar: '«كلمتان خفيفتان على اللسان، ثقيلتان في الميزان، حبيبتان إلى الرحمن: سبحان الله وبحمده، سبحان الله العظيم»', tr: { en: '“Two words are light on the tongue, heavy on the Scale, and beloved to the Most Merciful: Subhan Allahi wa bihamdihi, Subhan Allahil-‘Azim.”', id: '“Dua kalimat yang ringan di lisan, berat di timbangan, dan dicintai oleh Ar-Rahman: Subhanallahi wa bihamdihi, Subhanallahil ‘azhim.”' }, source: 'bukhari', ref: '6406', alsoIn: 'مسلم ٢٦٩٤', narrator: abuHurayrah, grade: sahih, status: 'verified', concepts: ['dhikr'] },
+  { id: 'h-041', type: 'hadith', ar: '«وأنا وكافلُ اليتيمِ في الجنة هكذا» وأشار بالسبابة والوسطى، وفرَّج بينهما شيئًا', tr: { en: '“I and the one who looks after an orphan will be in Paradise like this,” and he gestured with his index and middle fingers, slightly apart.', id: '“Aku dan orang yang menanggung anak yatim di surga seperti ini,” dan beliau berisyarat dengan jari telunjuk dan jari tengah, serta sedikit merenggangkan keduanya.' }, source: 'bukhari', ref: '5304', narrator: n('سهل بن سعد رضي الله عنه', 'Sahl ibn Sa‘d (ra)', 'Sahl bin Sa‘ad ra'), grade: sahih, status: 'verified', concepts: ['yatim', 'rahmah'] },
 ]
 
 export const sourceById = (id: string) => sources.find((s) => s.id === id)
@@ -183,7 +212,11 @@ const normalize = (s: string) =>
     .replace(/ى/g, 'ي')
     .replace(/[^\p{L}\p{N}\s]/gu, ' ')
 
-const stop = new Set(['ما', 'من', 'عن', 'في', 'هل', 'كيف', 'اتعامل', 'مع', 'على', 'احاديث', 'حديث', 'the', 'what', 'how', 'should', 'deal', 'with', 'about', 'are', 'and', 'apa', 'saja', 'bagaimana', 'tentang', 'dan', 'hadis', 'hadith', 'menghadapi', 'is', 'of', 'to', 'in', 'my', 'me', 'do', 'am', 'an', 'or', 'yang', 'itu', 'ini', 'di', 'ke'])
+const stop = new Set([
+  'ما', 'من', 'عن', 'في', 'هل', 'كيف', 'اتعامل', 'مع', 'على', 'الى', 'الي', 'ان', 'او', 'ثم', 'كل', 'لا', 'لي', 'يا', 'هو', 'هي', 'هذا', 'هذه', 'ماذا', 'لماذا', 'متى', 'اين', 'اريد', 'عندي', 'فضل', 'حكم', 'احاديث', 'حديث', 'ايات', 'ايه', 'اية', 'بر', 'و',
+  'the', 'what', 'how', 'should', 'deal', 'with', 'about', 'are', 'and', 'is', 'of', 'to', 'in', 'my', 'me', 'do', 'am', 'an', 'or', 'a', 'i', 'for', 'on', 'does', 'can', 'why', 'when', 'who', 'which', 'tell', 'virtue', 'hadith', 'hadiths', 'verses', 'verse',
+  'apa', 'saja', 'bagaimana', 'tentang', 'dan', 'hadis', 'menghadapi', 'yang', 'itu', 'ini', 'di', 'ke', 'keutamaan', 'ayat',
+])
 
 const tokens = (q: string) =>
   normalize(q)
@@ -191,32 +224,50 @@ const tokens = (q: string) =>
     .filter((w) => w.length > 1 && !stop.has(w))
     .map((w) => (w.startsWith('ال') && w.length > 4 ? w.slice(2) : w))
 
-const conceptMatches = (tok: string) =>
-  concepts.filter((c) =>
-    [...c.synonyms, ...Object.values(c.label)].some((s) => {
-      const ns = normalize(s)
-      return ns.includes(tok) || (tok.length > 3 && tok.includes(ns))
-    }),
-  )
+// Arabic words carry attached particles (و، ف، ب، ك، ل، ال); compare a word's bare forms, not raw substrings,
+// so that e.g. «رحم» (kinship) does not match «الرحمن» and «صدق» (truth) does not match «صدقة» (charity).
+const forms = (w: string) => {
+  const out = new Set([w])
+  for (const p of ['وال', 'فال', 'بال', 'كال', 'لل', 'ال', 'و', 'ف', 'ب', 'ل', 'ك']) if (w.startsWith(p) && w.length - p.length >= 2) out.add(w.slice(p.length))
+  return out
+}
+const wordMatch = (word: string, tok: string) => {
+  for (const f of forms(word)) {
+    if (f === tok) return true
+    // light stemming: allow short suffixes (plurals, pronouns, English -s/-ful/-ing) on longer tokens
+    if (tok.length >= 4 && f.startsWith(tok) && f.length - tok.length <= 3) return true
+  }
+  return false
+}
+const phraseMatch = (hay: string[], phrase: string) => {
+  const ws = normalize(phrase).split(/\s+/).filter(Boolean)
+  if (ws.length === 1) return hay.some((w) => wordMatch(w, ws[0]))
+  return hay.join(' ').includes(ws.join(' '))
+}
+
+const conceptMatches = (tok: string) => concepts.filter((c) => [...c.synonyms, ...Object.values(c.label)].some((s) => phraseMatch([tok], s) || phraseMatch(normalize(s).split(/\s+/), tok)))
 
 export function searchItems(query: string): { item: Item; score: number }[] {
   const toks = tokens(query)
-  if (!toks.length) return items.map((item) => ({ item, score: 0 }))
+  if (!toks.length) return normalize(query).trim() ? [] : items.map((item) => ({ item, score: 0 }))
   return items
     .map((item) => {
-      const hay = normalize([item.ar, item.tr.en, item.tr.id].join(' '))
-      let score = 0
+      const hay = normalize([item.ar, item.tr.en, item.tr.id].join(' ')).split(/\s+/).filter(Boolean)
+      let direct = 0
+      let related = 0
       for (const tok of toks) {
-        if (hay.includes(tok)) score += 3
+        if (hay.some((w) => wordMatch(w, tok))) direct += 3
         for (const c of conceptMatches(tok)) {
-          if (item.concepts.includes(c.id)) score += 2
-          else if (item.concepts.some((ic) => c.related.includes(ic))) score += 0.5
+          if (item.concepts.includes(c.id)) direct += 2
+          else if (item.concepts.some((ic) => c.related.includes(ic))) related += 0.5
         }
       }
+      // Related concepts only re-rank; they never pull in a text that does not match the question itself.
+      let score = direct ? direct + related : 0
       if (item.status === 'verified') score *= 1.1
       return { item, score }
     })
-    .filter((r) => r.score >= 1)
+    .filter((r) => r.score >= 2)
     .sort((a, b) => b.score - a.score)
 }
 
@@ -226,4 +277,7 @@ export const exampleQueries: L[] = [
   n('الرحمة', 'mercy', 'rahmat'),
   n('التثبت من الأخبار', 'verify news', 'tabayyun berita'),
   n('الصدقة', 'charity', 'sedekah'),
+  n('بر الوالدين', 'honouring parents', 'berbakti orang tua'),
+  n('صلة الرحم', 'ties of kinship', 'silaturahmi'),
+  n('الصبر', 'patience', 'sabar'),
 ]
