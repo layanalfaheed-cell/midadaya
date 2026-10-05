@@ -1,11 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Check, PartyPopper, Pencil, X } from 'lucide-react'
 import { usePrefs } from '@/lib/prefs'
 import { PageHeader, StatusBadge } from '@/components/ui'
+import { AdminGate } from '@/components/AdminGate'
 import { items, reviewQueue, sourceById } from '@/data/fixtures'
 
-export const Route = createFileRoute('/review')({ component: Review })
+export const Route = createFileRoute('/review')({ component: () => <AdminGate><Review /></AdminGate> })
 
 type Decision = 'approved' | 'rejected'
 
@@ -14,7 +15,21 @@ function Review() {
   const [decisions, setDecisions] = useState<Record<string, Decision>>({})
   const pending = reviewQueue.filter((r) => !decisions[r.id])
   const done = reviewQueue.filter((r) => decisions[r.id])
-  const decide = (id: string, d: Decision) => setDecisions((s) => ({ ...s, [id]: d }))
+  // Decisions are persisted with the reviewer's identity; the latest decision per task wins.
+  useEffect(() => {
+    fetch('/api/reviews')
+      .then((r) => (r.ok ? r.json() : []))
+      .then((rows: { taskId: string; decision: Decision }[]) => {
+        const map: Record<string, Decision> = {}
+        for (const r of [...rows].reverse()) map[r.taskId] = r.decision
+        setDecisions(map)
+      })
+      .catch(() => undefined)
+  }, [])
+  const decide = (id: string, d: Decision) => {
+    setDecisions((s) => ({ ...s, [id]: d }))
+    fetch('/api/reviews', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ taskId: id, decision: d }) }).catch(() => undefined)
+  }
 
   return (
     <div>

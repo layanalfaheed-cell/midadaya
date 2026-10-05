@@ -29,7 +29,7 @@ export function SupportChat({ embedded = false }: { embedded?: boolean }) {
   }
 
   return (
-    <div className={`flex flex-col ${embedded ? 'h-[520px]' : 'h-[460px]'}`}>
+    <div className={`flex flex-col ${embedded ? 'h-[520px]' : 'h-[min(460px,65dvh)]'}`}>
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         <Bubble from="bot" text={t.support.hello} />
         {msgs.map((m, i) => (
@@ -80,9 +80,9 @@ export function SupportWidget() {
   const { t } = usePrefs()
   const [open, setOpen] = useState(false)
   return (
-    <div className="fixed bottom-5 end-5 z-40">
+    <div className="fixed bottom-4 end-4 z-40 sm:bottom-5 sm:end-5">
       {open && (
-        <div className="card mb-3 w-[min(92vw,380px)] overflow-hidden shadow-2xl fade-up">
+        <div className="card mb-3 w-[min(calc(100vw-2rem),380px)] overflow-hidden shadow-2xl fade-up">
           <div className="flex items-center justify-between bg-pr px-4 py-3 text-sf">
             <div className="flex items-center gap-3">
               <span className="grid h-9 w-9 place-items-center rounded-full bg-sf/15">
@@ -102,7 +102,7 @@ export function SupportWidget() {
       )}
       <button
         onClick={() => setOpen((o) => !o)}
-        className="ms-auto flex h-14 w-14 items-center justify-center rounded-full bg-pr text-sf shadow-xl hover:bg-pr2 transition-colors"
+        className="ms-auto flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-pr text-sf shadow-xl hover:bg-pr2 transition-colors"
         aria-label={t.support.title}
         title={t.support.title}
       >

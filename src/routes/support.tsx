@@ -4,12 +4,14 @@ import { CheckCircle2, Headset, Mail } from 'lucide-react'
 import { usePrefs } from '@/lib/prefs'
 import { PageHeader } from '@/components/ui'
 import { SupportChat } from '@/components/Support'
+import { SUPPORT_EMAIL, submitForm } from '@/lib/auth'
 
 export const Route = createFileRoute('/support')({ component: Support })
 
 function Support() {
   const { t } = usePrefs()
   const [sent, setSent] = useState(false)
+  const [state, setState] = useState<'idle' | 'sending' | 'error'>('idle')
 
   return (
     <div>
@@ -44,25 +46,46 @@ function Support() {
           </section>
 
           <section className="band">
-            <h2 className="t3 mb-4 flex items-center gap-2"><Mail size={18} className="text-pr" /> {t.support.contactTitle}</h2>
+            <h2 className="t3 mb-1 flex items-center gap-2"><Mail size={18} className="text-pr" /> {t.support.contactTitle}</h2>
+            <p className="m-0 mb-4 text-sm text-mu">
+              {t.support.contactLead}{' '}
+              <a href={`mailto:${SUPPORT_EMAIL}`} className="font-semibold text-pr hover:underline" dir="ltr">{SUPPORT_EMAIL}</a>
+            </p>
             {sent ? (
               <p className="m-0 flex items-center gap-2 font-semibold text-pr">
                 <CheckCircle2 size={20} /> {t.support.sent}
               </p>
             ) : (
               <form
-                onSubmit={(e) => {
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                onSubmit={async (e) => {
                   e.preventDefault()
-                  setSent(true)
+                  const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>
+                  setState('sending')
+                  try {
+                    await submitForm('contact', { ...data, subject: `MIDAD · ${data.name ?? ''}` })
+                    setSent(true)
+                    setState('idle')
+                  } catch {
+                    setState('error')
+                  }
                 }}
                 className="space-y-3"
               >
+                <input type="hidden" name="form-name" value="contact" />
+                <p hidden>
+                  <input name="bot-field" />
+                </p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <input required name="name" placeholder={t.support.name} className="field" />
                   <input required type="email" name="email" placeholder={t.support.email} className="field" />
                 </div>
                 <textarea required name="message" rows={4} placeholder={t.support.message} className="field resize-none" />
-                <button className="btn btn-pr">{t.support.submit}</button>
+                <button className="btn btn-pr" disabled={state === 'sending'}>{state === 'sending' ? t.support.sending : t.support.submit}</button>
+                {state === 'error' && <p className="m-0 text-sm text-warn">{t.support.sendError}</p>}
               </form>
             )}
           </section>

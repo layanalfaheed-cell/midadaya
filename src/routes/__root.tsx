@@ -1,5 +1,6 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { PrefsProvider, prefsBootScript } from '@/lib/prefs'
+import { AuthProvider } from '@/lib/auth'
 import { Header, Footer } from '@/components/Header'
 import { SupportWidget } from '@/components/Support'
 import { SignPanel } from '@/components/SignPanel'
@@ -14,7 +15,7 @@ export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, viewport-fit=cover' },
       { title: siteName },
       { name: 'description', content: siteDescription },
       { name: 'theme-color', content: '#1e5c42' },
@@ -30,7 +31,7 @@ export const Route = createRootRoute({
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Amiri+Quran&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap',
       },
     ],
   }),
@@ -46,16 +47,18 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <PrefsProvider>
+          <AuthProvider>
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:start-2 focus:z-50 btn btn-pr">
             ↓
           </a>
           <Header />
-          <main id="main" className="mx-auto max-w-7xl px-4 pt-8 sm:px-6">
+          <main id="main" className="mx-auto max-w-7xl px-3 pt-5 sm:px-6 sm:pt-8 overflow-x-clip">
             {children}
           </main>
           <Footer />
           <SupportWidget />
           <SignPanel />
+          </AuthProvider>
         </PrefsProvider>
         <Scripts />
       </body>
